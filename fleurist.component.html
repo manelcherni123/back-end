@@ -84,7 +84,8 @@
   <div *ngIf="showAddForm" class="add-form">
     <h2>Ajouter un Fleuriste</h2>
     <form>
-      <input type="text" placeholder="Nom" [(ngModel)]="nom" required>
+      <input type="number" placeholder="Id" [(ngModel)]="Id" required>
+      <input type="text" placeholder="Nom" [(ngModel)]="nom">
       <select id="lieu" [(ngModel)]="lieu" required>
         <option value="" disabled selected>Choisir le gouvernorat</option>
         <option value="Ariana">Ariana</option>
