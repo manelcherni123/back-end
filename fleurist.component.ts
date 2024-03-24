@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AjoutFleuristeComponent {
   showAddForm: boolean = false; 
-  showAddForm: boolean = false;
+  showEditForm: boolean = false;
   id_fleuriste: number;
   nom: string = ''; 
   mail: string = '';  
