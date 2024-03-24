@@ -32,7 +32,7 @@ export class AjoutFleuristeComponent {
 
   
   ajouterFleuriste() {
-    this.http.post<any>('url_de_votre_serveur/fleuriste.php', {
+    this.http.post<any>('http://127.0.0.1:3000/fleuriste.php', {
       nom: this.nom,
       localisation: this.localisation,
       id_fleuriste: this.id_fleuriste,
