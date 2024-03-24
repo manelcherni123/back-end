@@ -19,11 +19,11 @@ export class ModifierFleuristeComponent {
   modifierFleuriste() {
     const updatedData = {
     nom: this.nom,
-    lieu: this.lieu,
+    localisation: this.localisation,
     avis: this.avis,
     prix: this.prix,
     mail: this.mail,
-    numeroTelephone: this.numeroTelephone,
+    num_tel: this.num_tel,
     service: this.service,
   };
 
