@@ -118,8 +118,7 @@
         <input type="checkbox" id="organisation" value="Organisation" [(ngModel)]="service">
         <label for="organisation">Organisation</label>
       </div>
-      <!-- Ajoutez d'autres cases à cocher pour d'autres services si nécessaire -->
-      <input type="file" (change)="onFileSelected($event)" accept=".jpg" required>
+      
       <button type="submit">Ajouter</button>
       <button type="button" (click)="annuler()">Annuler</button>
     </form>
@@ -137,16 +136,16 @@
   <h2>Modifier un Fleuriste</h2>
   <form>
     <label for="nom">Nom:</label>
-    <input type="text" id="nom" [(ngModel)]="nom" required>
+    <input type="text" id="nom" [(ngModel)]="nom" >
     
     <label for="lieu">Lieu:</label>
-    <input type="text" id="lieu" [(ngModel)]="lieu" required>
+    <input type="text" id="lieu" [(ngModel)]="lieu" >
     
     <label for="avis">Avis:</label>
-    <input type="number" id="avis" [(ngModel)]="avis" required>
+    <input type="number" id="avis" [(ngModel)]="avis" >
     
     <label for="prix">Prix Moyen:</label>
-    <input type="number" id="prix" [(ngModel)]="prix" required>
+    <input type="number" id="prix" [(ngModel)]="prix" >
     
     <label for="email">Email:</label>
     <input type="email" id="email" [(ngModel)]="email">
@@ -163,10 +162,6 @@
       <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="services>
       <label for="fleurs">Fleurs pour mariée</label>
     </div>
-
-    
-    <label for="image">Image:</label>
-    <input type="file" id="image" (change)="onFileSelected($event)" accept=".jpg">
     
     <button type="submit" (click)="modifierFleuriste()">Modifier</button>
     <button type="button" (click)="annulerModification()">Annuler</button>
