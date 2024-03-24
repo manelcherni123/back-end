@@ -1,0 +1,173 @@
+
+  
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un Fleuriste</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("C:\Users\elham\Desktop\mini projet web\fleuriste\image\img1.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      max-width: 400px;
+      width: 80%;
+      padding: 20px;
+      background-color: rgba(217, 144, 216, 0.87);
+      border-radius: 10px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #b41d78;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.8em;
+      display: none;
+    }
+
+    .success-message {
+      color: green;
+      font-size: 1em;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-interface">
+    <!-- Image -->
+    <img src="C:\Users\Nawres\OneDrive\Bureau\amapolacover_2_1200.jpg" alt="Image du fleuriste">
+
+    <!-- Boutons -->
+    <button (click)="ajouter()">Ajouter</button>
+    <button (click)="supprimer()">Supprimer</button>
+    <button (click)="modifier()">Modifier</button>
+  </div>
+
+  <!-- Formulaire pour ajouter un nouveau fleuriste -->
+  <div *ngIf="showAddForm" class="add-form">
+    <h2>Ajouter un Fleuriste</h2>
+    <form>
+      <input type="text" placeholder="Nom" [(ngModel)]="nom" required>
+      <select id="lieu" [(ngModel)]="lieu" required>
+        <option value="" disabled selected>Choisir le gouvernorat</option>
+        <option value="Ariana">Ariana</option>
+        <option value="Tunis">Tunis</option>
+        <option value="Ben arous">Ben arous</option>
+        <option value="Sfax">Sfax</option>
+        <option value="Nabeul">Nabeul</option>
+        <option value="Sousse">Sousse</option>
+        <option value="Monastir">Monastir</option>
+      </select>
+      <input type="number" placeholder="Avis" [(ngModel)]="avis" min="0" max="5" step="0.1" required>
+      <span class="error-message" *ngIf="avis !== '' && (avis < 0 || avis > 5)">L'avis doit être entre 0 et 5.</span>
+      <input type="number" placeholder="Prix Moyen" [(ngModel)]="prixMoyen" required>
+      <input type="email" placeholder="Email" [(ngModel)]="email">
+      <input type="tel" placeholder="Numéro de Téléphone" [(ngModel)]="numeroTelephone" pattern="[0-9]{8}" maxlength="8" required>
+      <span class="error-message" *ngIf="numeroTelephone !== '' && formGroup.get('numeroTelephone').errors?.pattern">
+        Numéro de téléphone invalide (8 chiffres requis).
+      </span>
+
+      <label for="services">Services :</label>
+      <div>
+        <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="services">
+        <label for="decoration">Décoration</label>
+      </div>
+      <div>
+        <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="services">
+        <label for="fleurs">Fleurs pour marièe </label>
+      </div>
+      <div>
+        <input type="checkbox" id="organisation" value="Organisation" [(ngModel)]="services">
+        <label for="organisation">Organisation</label>
+      </div>
+      <!-- Ajoutez d'autres cases à cocher pour d'autres services si nécessaire -->
+      <input type="file" (change)="onFileSelected($event)" accept=".jpg" required>
+      <button type="submit">Ajouter</button>
+      <button type="button" (click)="annuler()">Annuler</button>
+    </form>
+    <div *ngIf="showDeleteForm" class="delete-form">
+        <h2>Supprimer un Fleuriste</h2>
+        <form>
+          <label for="idFleuriste">ID du Fleuriste à supprimer:</label>
+          <input type="text" id="idFleuriste" [(ngModel)]="idFleuristeToDelete" required>
+          <button type="submit" (click)="supprimerFleuriste()">Supprimer</button>
+          <button type="button" (click)="annulerSuppression()">Annuler</button>
+        </form>
+      </div>
+
+<div *ngIf="showEditForm" class="edit-form">
+  <h2>Modifier un Fleuriste</h2>
+  <form>
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" [(ngModel)]="nom" required>
+    
+    <label for="lieu">Lieu:</label>
+    <input type="text" id="lieu" [(ngModel)]="lieu" required>
+    
+    <label for="avis">Avis:</label>
+    <input type="number" id="avis" [(ngModel)]="avis" required>
+    
+    <label for="prixMoyen">Prix Moyen:</label>
+    <input type="number" id="prixMoyen" [(ngModel)]="prixMoyen" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="email">
+    
+    <label for="numeroTelephone">Numéro de Téléphone:</label>
+    <input type="tel" id="numeroTelephone" [(ngModel)]="numeroTelephone" pattern="[0-9]{8}" maxlength="8" required>
+    
+    <label for="services">Services:</label>
+    <div>
+      <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="services">
+      <label for="decoration">Décoration</label>
+    </div>
+    <div>
+      <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="services">
+      <label for="fleurs">Fleurs pour mariée</label>
+    </div>
+
+    
+    <label for="image">Image:</label>
+    <input type="file" id="image" (change)="onFileSelected($event)" accept=".jpg">
+    
+    <button type="submit" (click)="modifierFleuriste()">Modifier</button>
+    <button type="button" (click)="annulerModification()">Annuler</button>
+  </form>
+</div>
