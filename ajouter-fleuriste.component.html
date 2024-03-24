@@ -69,21 +69,17 @@
 
 <body>
   <div class="main-interface">
-    <!-- Image -->
-    <img src="C:\Users\Nawres\OneDrive\Bureau\amapolacover_2_1200.jpg" alt="Image du fleuriste">
-
-    <!-- Boutons -->
     <button (click)="ajouter()">Ajouter</button>
     <button (click)="supprimer()">Supprimer</button>
     <button (click)="modifier()">Modifier</button>
   </div>
 
-  <!-- Formulaire pour ajouter un nouveau fleuriste -->
+
   <div *ngIf="showAddForm" class="add-form">
     <h2>Ajouter un Fleuriste</h2>
     <form>
       <input type="text" placeholder="Nom" [(ngModel)]="nom" required>
-      <select id="lieu" [(ngModel)]="lieu" required>
+      <select id="localisation" [(ngModel)]="localisation" required>
         <option value="" disabled selected>Choisir le gouvernorat</option>
         <option value="Ariana">Ariana</option>
         <option value="Tunis">Tunis</option>
@@ -95,28 +91,27 @@
       </select>
       <input type="number" placeholder="Avis" [(ngModel)]="avis" min="0" max="5" step="0.1" required>
       <span class="error-message" *ngIf="avis !== '' && (avis < 0 || avis > 5)">L'avis doit être entre 0 et 5.</span>
-      <input type="number" placeholder="Prix Moyen" [(ngModel)]="prixMoyen" required>
-      <input type="email" placeholder="Email" [(ngModel)]="email">
-      <input type="tel" placeholder="Numéro de Téléphone" [(ngModel)]="numeroTelephone" pattern="[0-9]{8}" maxlength="8" required>
-      <span class="error-message" *ngIf="numeroTelephone !== '' && formGroup.get('numeroTelephone').errors?.pattern">
+      <input type="number" placeholder="Prix Moyen" [(ngModel)]="prix" required>
+      <input type="email" placeholder="Email" [(ngModel)]="mail">
+      <input type="tel" placeholder="Numéro de Téléphone" [(ngModel)]="num_tel" pattern="[0-9]{8}" maxlength="8" required>
+      <span class="error-message" *ngIf="num_tel !== '' && formGroup.get('num_tel').errors?.pattern">
         Numéro de téléphone invalide (8 chiffres requis).
       </span>
 
       <label for="services">Services :</label>
       <div>
-        <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="services">
+        <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="service">
         <label for="decoration">Décoration</label>
       </div>
       <div>
-        <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="services">
+        <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="service">
         <label for="fleurs">Fleurs pour marièe </label>
       </div>
       <div>
-        <input type="checkbox" id="organisation" value="Organisation" [(ngModel)]="services">
+        <input type="checkbox" id="organisation" value="Organisation" [(ngModel)]="service">
         <label for="organisation">Organisation</label>
       </div>
-      <!-- Ajoutez d'autres cases à cocher pour d'autres services si nécessaire -->
-      <input type="file" (change)="onFileSelected($event)" accept=".jpg" required>
+      
       <button type="submit">Ajouter</button>
       <button type="button" (click)="annuler()">Annuler</button>
     </form>
