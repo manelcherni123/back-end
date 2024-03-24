@@ -74,8 +74,8 @@
           <label for="nom">Nom:</label>
           <input type="text" id="nom" [(ngModel)]="nom">
           
-          <label for="lieu">Lieu:</label>
-          <input type="text" id="lieu" [(ngModel)]="lieu">
+          <label for="localisation">localisation:</label>
+          <input type="text" id="localisation" [(ngModel)]="localisation">
           
           <label for="avis">Avis:</label>
           <input type="number" id="avis" [(ngModel)]="avis">
@@ -99,9 +99,6 @@
             <label for="fleurs">Fleurs pour mariée</label>
           </div>
       
-          
-          <label for="image">Image:</label>
-          <input type="file" id="image" (change)="onFileSelected($event)" accept=".jpg">
           
           <button type="submit" (click)="modifierFleuriste()">Modifier</button>
           <button type="button" (click)="annulerModification()">Annuler</button>
