@@ -7,14 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AjoutFleuristeComponent {
   showAddForm: boolean = false; 
+  showAddForm: boolean = false;
+  id_fleuriste: number;
   nom: string = ''; 
-  lieu: string = ''; 
+  mail: string = '';  
+  num_tel: number; 
+  localisation: string = ''; 
   avis: number; 
-  prixMoyen: number; 
-  email: string = ''; 
-  numeroTelephone: string = ''; 
-  services: string[] = []; 
-  image: File;
+  prix: number;
+  service: string[] = []; 
+  
 
   constructor() {
     this.showAddForm = false; 
@@ -41,14 +43,14 @@ export class AjoutFleuristeComponent {
 
 
   resetForm() {
+    this.id=null;
     this.nom = '';
-    this.lieu = '';
+    this.localisation = '';
     this.avis = null;
-    this.prixMoyen = null;
-    this.email = '';
-    this.numeroTelephone = '';
-    this.services = [];
-    this.image = null;
+    this.prix = null;
+    this.mail = '';
+    this.num_tel = null;
+    this.service = [];
   }
 
   
