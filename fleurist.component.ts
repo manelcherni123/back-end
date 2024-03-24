@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-ajout-fleuriste',
@@ -16,11 +17,13 @@ export class AjoutFleuristeComponent {
   avis: number; 
   prix: number;
   service: string[] = []; 
-  
 
-  constructor() {
-    this.showAddForm = false; 
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.recupererListeFleuristes(); // Appel de la méthode pour récupérer la liste des fleuristes au chargement du composant
   }
+  
 
   
   ajouter() {
@@ -29,10 +32,24 @@ export class AjoutFleuristeComponent {
 
   
   ajouterFleuriste() {
-    
-    console.log('Fleuriste ajouté avec succès!');
-    this.resetForm();
-    this.showAddForm = false;
+    this.http.post<any>('url_de_votre_serveur/fleuriste.php', {
+      nom: this.nom,
+      localisation: this.localisation,
+      id_fleuriste: this.id_fleuriste,
+      num_tel: this.num_tel,
+      mail: this.mail,
+      prix: this.prix,
+      service: this.service,
+      avis: this.avis
+      
+    }).subscribe(response => {
+      console.log(response); // Affichage de la réponse du serveur
+      // Autres actions après réception de la réponse
+    }, error => {
+      console.error(error); // Gestion des erreurs
+    });
+  }
+  
   }
 
   annuler() {
@@ -57,6 +74,14 @@ export class AjoutFleuristeComponent {
   onFileSelected(event: any) {
     this.image = event.target.files[0];
   }
+  recupererListeFleuristes() {
+    this.http.get<any>('http://127.0.0.1:3000/fleuriste.php')
+      .subscribe(response => {
+        console.log(response); // Traiter la réponse du serveur, par exemple affecter la réponse à une variable pour l'affichage dans le front-end
+      }, error => {
+        console.error(error); // Gérer les erreurs
+      });
+  }
 
 
   afficherFormulaireModification() {
@@ -65,13 +90,26 @@ export class AjoutFleuristeComponent {
 
   
   modifierFleuriste() {
-    
-    console.log('Fleuriste modifié avec succès !');
-    this.annulerModification(); 
+    this.http.put<any>('http://127.0.0.1:3000/fleuriste.php?id_fleuriste=' + this.id_fleuriste,{
+    }).subscribe(response => {
+       console.log(response); // Traiter la réponse du serveur
+       this.annulerModification(); 
+    }, error => {
+       console.error(error); // Gérer les erreurs
+     });
+  
   }
+supprimerFleuriste(id: number) {
+  this.http.delete<any>('http://127.0.0.1:3000/fleuriste.php?id_fleuriste=' + id)
+    .subscribe(response => {
+      console.log(response); // Traiter la réponse du serveur
+    }, error => {
+      console.error(error); // Gérer les erreurs
+    });
+}
 
   annulerModification() {
-    this.idFleuristeToEdit = ''; 
+    this.id_fleuriste = null; 
     this.showEditForm = false; 
   }
 }
