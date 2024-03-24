@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-image: url("C:\Users\elham\Desktop\mini projet web\fleuriste\image\img1.jpg");
+      /*background-image: url("C:\Users\elham\Desktop\mini projet web\fleuriste\image\img1.jpg");*/
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -71,12 +71,12 @@
     <div *ngIf="showDeleteForm" class="delete-form">
         <h2>Supprimer un Fleuriste</h2>
         <form>
-          <label for="idFleuriste">ID du Fleuriste à supprimer:</label>
-          <input type="text" id="idFleuriste" [(ngModel)]="idFleuristeToDelete" required>
+          <label for="id_fleuriste">ID du Fleuriste à supprimer:</label>
+          <input type="text" id="id_fleuriste" [(ngModel)]="idFleuristeToDelete" required>
           <button type="submit" (click)="supprimerFleuriste()">Supprimer</button>
           <button type="button" (click)="annulerSuppression()">Annuler</button>
         </form>
       </div>
-  <script src="supprimer-fleuriste.component.js" defer></script>
+  <script src="supprimer-fleuriste.component.ts" defer></script>
 </body>
 </html>
