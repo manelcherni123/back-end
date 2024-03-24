@@ -97,24 +97,24 @@
       </select>
       <input type="number" placeholder="Avis" [(ngModel)]="avis" min="0" max="5" step="0.1" required>
       <span class="error-message" *ngIf="avis !== '' && (avis < 0 || avis > 5)">L'avis doit être entre 0 et 5.</span>
-      <input type="number" placeholder="Prix Moyen" [(ngModel)]="prixMoyen" required>
-      <input type="email" placeholder="Email" [(ngModel)]="email">
+      <input type="number" placeholder="Prix" [(ngModel)]="prix" required>
+      <input type="email" placeholder="mail" [(ngModel)]="mail">
       <input type="tel" placeholder="Numéro de Téléphone" [(ngModel)]="numeroTelephone" pattern="[0-9]{8}" maxlength="8" required>
       <span class="error-message" *ngIf="numeroTelephone !== '' && formGroup.get('numeroTelephone').errors?.pattern">
         Numéro de téléphone invalide (8 chiffres requis).
       </span>
 
-      <label for="services">Services :</label>
+      <label for="service">Services :</label>
       <div>
-        <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="services">
+        <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="service">
         <label for="decoration">Décoration</label>
       </div>
       <div>
-        <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="services">
+        <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="service">
         <label for="fleurs">Fleurs pour marièe </label>
       </div>
       <div>
-        <input type="checkbox" id="organisation" value="Organisation" [(ngModel)]="services">
+        <input type="checkbox" id="organisation" value="Organisation" [(ngModel)]="service">
         <label for="organisation">Organisation</label>
       </div>
       <!-- Ajoutez d'autres cases à cocher pour d'autres services si nécessaire -->
@@ -125,8 +125,8 @@
     <div *ngIf="showDeleteForm" class="delete-form">
         <h2>Supprimer un Fleuriste</h2>
         <form>
-          <label for="idFleuriste">ID du Fleuriste à supprimer:</label>
-          <input type="text" id="idFleuriste" [(ngModel)]="idFleuristeToDelete" required>
+          <label for="id_fleuriste">ID du Fleuriste à supprimer:</label>
+          <input type="text" id="id_fleuriste" [(ngModel)]="idFleuristeToDelete" required>
           <button type="submit" (click)="supprimerFleuriste()">Supprimer</button>
           <button type="button" (click)="annulerSuppression()">Annuler</button>
         </form>
@@ -144,8 +144,8 @@
     <label for="avis">Avis:</label>
     <input type="number" id="avis" [(ngModel)]="avis" required>
     
-    <label for="prixMoyen">Prix Moyen:</label>
-    <input type="number" id="prixMoyen" [(ngModel)]="prixMoyen" required>
+    <label for="prix">Prix Moyen:</label>
+    <input type="number" id="prix" [(ngModel)]="prix" required>
     
     <label for="email">Email:</label>
     <input type="email" id="email" [(ngModel)]="email">
@@ -153,13 +153,13 @@
     <label for="numeroTelephone">Numéro de Téléphone:</label>
     <input type="tel" id="numeroTelephone" [(ngModel)]="numeroTelephone" pattern="[0-9]{8}" maxlength="8" required>
     
-    <label for="services">Services:</label>
+    <label for="service">Services:</label>
     <div>
-      <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="services">
+      <input type="checkbox" id="decoration" value="Décoration" [(ngModel)]="service">
       <label for="decoration">Décoration</label>
     </div>
     <div>
-      <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="services">
+      <input type="checkbox" id="fleurs" value="Fleurs" [(ngModel)]="services>
       <label for="fleurs">Fleurs pour mariée</label>
     </div>
 
