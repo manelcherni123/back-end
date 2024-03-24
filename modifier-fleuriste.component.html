@@ -71,6 +71,9 @@
     <div *ngIf="showEditForm" class="edit-form">
         <h2>Modifier un Fleuriste</h2>
         <form>
+           <label for="id_fleuriste">Identifiant du fleuriste :</label><br>
+           <input type="text" id="id_fleuriste" name="id_fleuriste" placeholder="donner identificateur de fleuriste a modifier"><br><br>
+          
           <label for="nom">Nom:</label>
           <input type="text" id="nom" [(ngModel)]="nom">
           
