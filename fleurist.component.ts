@@ -71,9 +71,6 @@ export class AjoutFleuristeComponent {
   }
 
   
-  onFileSelected(event: any) {
-    this.image = event.target.files[0];
-  }
   recupererListeFleuristes() {
     this.http.get<any>('http://127.0.0.1:3000/fleuriste.php')
       .subscribe(response => {
