@@ -85,7 +85,7 @@
     <h2>Ajouter un Fleuriste</h2>
     <form>
       <input type="number" placeholder="Id" [(ngModel)]="Id" required>
-      <input type="text" placeholder="Nom" [(ngModel)]="nom">
+      <input type="text" placeholder="Nom" [(ngModel)]="nom" required>
       <select id="lieu" [(ngModel)]="lieu" required>
         <option value="" disabled selected>Choisir le gouvernorat</option>
         <option value="Ariana">Ariana</option>
@@ -99,7 +99,7 @@
       <input type="number" placeholder="Avis" [(ngModel)]="avis" min="0" max="5" step="0.1" required>
       <span class="error-message" *ngIf="avis !== '' && (avis < 0 || avis > 5)">L'avis doit être entre 0 et 5.</span>
       <input type="number" placeholder="Prix" [(ngModel)]="prix" required>
-      <input type="email" placeholder="mail" [(ngModel)]="mail">
+      <input type="email" placeholder="mail" [(ngModel)]="mail" required>
       <input type="tel" placeholder="Numéro de Téléphone" [(ngModel)]="numeroTelephone" pattern="[0-9]{8}" maxlength="8" required>
       <span class="error-message" *ngIf="numeroTelephone !== '' && formGroup.get('numeroTelephone').errors?.pattern">
         Numéro de téléphone invalide (8 chiffres requis).
